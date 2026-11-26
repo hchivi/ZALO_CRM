@@ -1,0 +1,105 @@
+export const zaloThemes = {
+  // 1. Xanh Thương Hiệu (Forest Brand - Mặc định của Chuỗi Cung Ứng)
+  forestTheme: {
+    dark: false,
+    colors: {
+      background: '#F5F8F6',
+      surface: '#FFFFFF',
+      'surface-variant': '#E8F1EC',
+      'surface-light': '#DCE7E1',
+      primary: '#004526',
+      'primary-darken-1': '#003B2B',
+      secondary: '#126B49',
+      'secondary-darken-1': '#085a3a',
+      accent: '#004526',
+      error: '#EF4444',
+      warning: '#F59E0B',
+      success: '#10B981',
+      info: '#3B82F6',
+      'on-background': '#132A23',
+      'on-surface': '#132A23',
+      'on-primary': '#FFFFFF',
+    },
+  },
+
+  // 2. Trắng Đen Tối Giản (Monochrome Minimalist)
+  'theme-monochrome': {
+    dark: false,
+    colors: {
+      background: '#F4F5F7',
+      surface: '#FFFFFF',
+      'surface-variant': '#E4E4E7',
+      'surface-light': '#D4D4D8',
+      primary: '#18181B',
+      'primary-darken-1': '#09090B',
+      secondary: '#52525B',
+      'secondary-darken-1': '#27272A',
+      accent: '#18181B',
+      error: '#EF4444',
+      warning: '#F59E0B',
+      success: '#10B981',
+      info: '#3B82F6',
+      'on-background': '#09090B',
+      'on-surface': '#09090B',
+      'on-primary': '#FFFFFF',
+    },
+  },
+
+  // 3. Xanh Navy Doanh Nghiệp (Corporate Deep Navy)
+  'corporate-navy': {
+    dark: false,
+    colors: {
+      background: '#F0F4F8',
+      surface: '#FFFFFF',
+      'surface-variant': '#E2E8F0',
+      'surface-light': '#CBD5E1',
+      primary: '#1E3A8A',
+      'primary-darken-1': '#0F172A',
+      secondary: '#0284C7',
+      'secondary-darken-1': '#0369A1',
+      accent: '#2563EB',
+      error: '#EF4444',
+      warning: '#F59E0B',
+      success: '#10B981',
+      info: '#0284C7',
+      'on-background': '#0F172A',
+      'on-surface': '#0F172A',
+      'on-primary': '#FFFFFF',
+    },
+  },
+
+  // Giữ alias tương thích nếu trình duyệt từng lưu 'light-apple'
+  'light-apple': {
+    dark: false,
+    colors: {
+      background: '#F5F8F6',
+      surface: '#FFFFFF',
+      'surface-variant': '#E8F1EC',
+      'surface-light': '#DCE7E1',
+      primary: '#004526',
+      'primary-darken-1': '#003B2B',
+      secondary: '#126B49',
+      'secondary-darken-1': '#085a3a',
+      accent: '#004526',
+      error: '#EF4444',
+      warning: '#F59E0B',
+      success: '#10B981',
+      info: '#3B82F6',
+      'on-background': '#132A23',
+      'on-surface': '#132A23',
+      'on-primary': '#FFFFFF',
+    },
+  },
+};
+
+export const zaloDefaults = {
+  VBtn: { variant: 'flat', rounded: 'lg' },
+  VTextField: { variant: 'outlined', density: 'compact', rounded: 'lg' },
+  VSelect: { variant: 'outlined', density: 'compact', rounded: 'lg' },
+  VAutocomplete: { variant: 'outlined', density: 'compact', rounded: 'lg' },
+  VCombobox: { variant: 'outlined', density: 'compact', rounded: 'lg' },
+  VTextarea: { variant: 'outlined', density: 'compact', rounded: 'lg' },
+  VCard: { rounded: 'xl', variant: 'flat' },
+  VChip: { rounded: 'lg', size: 'small' },
+  VDialog: { maxWidth: 680 },
+};

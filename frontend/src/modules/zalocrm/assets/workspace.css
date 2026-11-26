@@ -1,0 +1,940 @@
+
+body.zalo-workspace {
+  --navy-deep: rgb(var(--v-theme-background));
+  --navy-light: rgb(var(--v-theme-surface));
+  --cyan-electric: rgb(var(--v-theme-primary));
+  --card-glass: rgb(var(--v-theme-surface));
+  --liquid-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --border-glow: rgba(var(--v-border-color), var(--v-border-opacity));
+}
+
+html.zalo-workspace, body.zalo-workspace {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  min-height: 100dvh;
+  max-width: 100%;
+  overflow-x: clip;
+  font-family: 'Plus Jakarta Sans', 'Roboto', sans-serif;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body.zalo-workspace #app {
+  height: 100%;
+}
+
+/* Liquid animated background */
+@keyframes flow-bg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes liquid-morph {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50% { border-radius: 30% 60% 70% 30% / 50% 60% 30% 50%; }
+}
+
+@keyframes fade-slide-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+body.zalo-workspace .liquid-bg {
+  background: linear-gradient(-45deg, 
+    rgb(var(--v-theme-background)), 
+    rgb(var(--v-theme-surface)), 
+    var(--theme-gradient-1, rgb(var(--v-theme-background))), 
+    var(--theme-gradient-2, rgb(var(--v-theme-surface)))
+  ) !important;
+  background-size: 400% 400% !important;
+  animation: flow-bg 15s ease infinite;
+}
+
+body.zalo-workspace .green-liquid-bg {
+  background: linear-gradient(-45deg, #021a0e, #042c17, #023015, #00B074) !important;
+  background-size: 400% 400% !important;
+  animation: flow-bg 15s ease infinite;
+}
+
+body.zalo-workspace .ai-core-orb {
+  animation: liquid-morph 8s infinite var(--liquid-ease);
+  box-shadow: 0 0 30px rgba(var(--v-theme-primary), 0.2);
+}
+
+/* Glass card effect - dynamic */
+body.zalo-workspace .v-card {
+  background: rgba(var(--v-theme-surface), 0.7) !important;
+  border: 1px solid rgba(var(--v-border-color), var(--v-border-opacity)) !important;
+  backdrop-filter: blur(12px);
+}
+
+/* Custom scrollbar */
+body.zalo-workspace ::-webkit-scrollbar { width: 4px; }
+body.zalo-workspace ::-webkit-scrollbar-track { background: transparent; }
+body.zalo-workspace ::-webkit-scrollbar-thumb { background: rgba(var(--v-theme-primary), 0.25); border-radius: 10px; }
+body.zalo-workspace ::-webkit-scrollbar-thumb:hover { background: rgba(var(--v-theme-primary), 0.5); }
+
+body.zalo-workspace .v-theme--light ::-webkit-scrollbar-thumb,
+body.zalo-workspace .v-theme--light-apple ::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.15); }
+
+/* Sidebar navigation */
+body.zalo-workspace .v-navigation-drawer {
+  background: rgba(var(--v-theme-surface), 0.7) !important;
+  border-right: 1px solid rgba(var(--v-border-color), var(--v-border-opacity)) !important;
+  backdrop-filter: blur(12px);
+}
+
+body.zalo-workspace .custom-app-sidebar {
+  background: var(--sidebar-bg, #003B2B) !important;
+  border-right: 1px solid var(--sidebar-border, #00261C) !important;
+  color: #FFFFFF !important;
+  backdrop-filter: none !important;
+}
+body.zalo-workspace .v-theme--forestTheme .custom-app-sidebar {
+  background: #003B2B !important;
+  border-right: 1px solid #00261C !important;
+}
+
+/* App bar */
+body.zalo-workspace .v-app-bar {
+  background: rgba(var(--v-theme-surface), 0.7) !important;
+  border-bottom: 1px solid rgba(var(--v-border-color), var(--v-border-opacity)) !important;
+  backdrop-filter: blur(12px);
+}
+
+/* Light mode overrides for cards, drawers, and headers */
+body.zalo-workspace .v-theme--light .v-card,
+body.zalo-workspace .v-theme--light-apple .v-card,
+body.zalo-workspace .v-theme--forestTheme .v-card {
+  background: #FFFFFF !important;
+  border-color: #E5EBE7 !important;
+  backdrop-filter: none;
+}
+
+body.zalo-workspace .v-theme--light .v-app-bar,
+body.zalo-workspace .v-theme--light-apple .v-app-bar,
+body.zalo-workspace .v-theme--forestTheme .v-app-bar {
+  background: #FFFFFF !important;
+  border-bottom: 1px solid #E5EBE7 !important;
+  backdrop-filter: none;
+}
+
+/* List items hover - dynamic glow */
+body.zalo-workspace .v-list-item:hover {
+  background: rgba(var(--v-theme-primary), 0.05) !important;
+}
+
+body.zalo-workspace .v-list-item--active {
+  background: rgba(var(--v-theme-primary), 0.12) !important;
+  color: rgb(var(--v-theme-primary)) !important;
+  font-weight: 600 !important;
+}
+
+body.zalo-workspace .v-list-item--active .v-icon {
+  color: rgb(var(--v-theme-primary)) !important;
+}
+
+body.zalo-workspace .v-theme--forestTheme .v-list-item:hover {
+  background: #E2F0E7 !important;
+  color: #004526 !important;
+}
+
+/* Ensure icons inside hovered dropdown items also adapt to theme */
+body.zalo-workspace .v-overlay .v-list-item:hover .v-icon {
+  color: rgb(var(--v-theme-primary)) !important;
+}
+
+/* Input fields - clean portal rounded style */
+body.zalo-workspace .v-field {
+  border-radius: 10px !important;
+}
+
+body.zalo-workspace .v-field--focused {
+  border-color: rgb(var(--v-theme-primary)) !important;
+  box-shadow: 0 0 0 2px rgba(var(--v-theme-primary), 0.12) !important;
+}
+
+/* Standardized primary & secondary buttons */
+body.zalo-workspace .v-btn--variant-flat.bg-primary {
+  background-color: rgb(var(--v-theme-primary)) !important;
+  color: rgb(var(--v-theme-on-primary)) !important;
+  font-weight: 600 !important;
+}
+body.zalo-workspace .v-btn--variant-flat.bg-primary:hover {
+  background-color: rgb(var(--v-theme-secondary)) !important;
+  opacity: 0.94;
+}
+body.zalo-workspace .v-btn--variant-tonal.text-primary {
+  background-color: rgba(var(--v-theme-primary), 0.12) !important;
+  color: rgb(var(--v-theme-primary)) !important;
+}
+body.zalo-workspace .v-btn--variant-tonal.text-primary:hover {
+  background-color: rgba(var(--v-theme-primary), 0.20) !important;
+}
+
+/* Badges for customer type & status */
+body.zalo-workspace .badge-cust-personal,
+body.zalo-workspace .v-chip.badge-cust-personal {
+  background-color: #FEF3C7 !important;
+  color: #92400E !important;
+  border: 1px solid #FDE68A !important;
+  font-weight: 600 !important;
+}
+body.zalo-workspace .badge-cust-business,
+body.zalo-workspace .v-chip.badge-cust-business {
+  background-color: #EFF6FF !important;
+  color: #1D4ED8 !important;
+  border: 1px solid #BFDBFE !important;
+  font-weight: 600 !important;
+}
+
+/* Chat bubbles */
+body.zalo-workspace .message-bubble {
+  animation: fade-slide-up 0.3s var(--liquid-ease);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+/* Sent messages (staff / self) - right aligned */
+body.zalo-workspace .message-bubble.staff-bubble {
+  border-radius: 18px 18px 4px 18px !important;
+}
+
+body.zalo-workspace .v-theme--emerald-care .message-bubble.staff-bubble {
+  background: linear-gradient(135deg, #00B074, #046A38) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(0, 176, 116, 0.25) !important;
+}
+
+body.zalo-workspace .v-theme--dark-obsidian .message-bubble.staff-bubble {
+  background: linear-gradient(135deg, #0077B6, #023E8A) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(0, 119, 182, 0.25) !important;
+}
+
+body.zalo-workspace .v-theme--dark-charcoal .message-bubble.staff-bubble {
+  background: linear-gradient(135deg, #8B5CF6, #6D28D9) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.25) !important;
+}
+
+/* Apple Light Theme - Elegant Light Gray Bubble with Deep Contrast Text */
+body.zalo-workspace .v-theme--light .message-bubble.staff-bubble,
+body.zalo-workspace .v-theme--light-apple .message-bubble.staff-bubble {
+  background: #E4E4E7 !important;
+  color: #09090B !important;
+  border: 1px solid #D4D4D8 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Timestamp inside self bubble */
+body.zalo-workspace .msg-time-self {
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
+/* Received messages (customer / contact) - left aligned */
+body.zalo-workspace .message-bubble.customer-bubble {
+  background: rgba(var(--v-theme-surface-variant), 0.7) !important;
+  border: 1px solid rgba(var(--v-border-color), var(--v-border-opacity)) !important;
+  border-radius: 18px 18px 18px 4px !important;
+  color: rgb(var(--v-theme-on-surface)) !important;
+}
+
+/* Timestamp inside received bubble */
+body.zalo-workspace .msg-time-contact {
+  color: rgba(var(--v-theme-on-surface), 0.65);
+}
+
+body.zalo-workspace .v-theme--light .message-bubble.customer-bubble,
+body.zalo-workspace .v-theme--light-apple .message-bubble.customer-bubble {
+  background: #FFFFFF !important;
+  border: 1px solid #E4E4E7 !important;
+  color: #09090B !important;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Image, Sticker & Contact Card bubble overrides (borderless, transparent for both customer and staff across all themes) */
+body.zalo-workspace .message-bubble.image-bubble,
+body.zalo-workspace .message-bubble.image-bubble-self,
+body.zalo-workspace .message-bubble.sticker-bubble,
+body.zalo-workspace .message-bubble.contact-card-bubble,
+body.zalo-workspace .message-bubble.contact-bubble-self,
+body.zalo-workspace .message-bubble.customer-bubble.image-bubble,
+body.zalo-workspace .message-bubble.customer-bubble.sticker-bubble,
+body.zalo-workspace .message-bubble.customer-bubble.contact-card-bubble,
+body.zalo-workspace .message-bubble.staff-bubble.image-bubble,
+body.zalo-workspace .message-bubble.staff-bubble.image-bubble-self,
+body.zalo-workspace .message-bubble.staff-bubble.sticker-bubble,
+body.zalo-workspace .message-bubble.staff-bubble.contact-card-bubble,
+body.zalo-workspace .message-bubble.staff-bubble.contact-bubble-self,
+body.zalo-workspace .v-application .message-bubble.customer-bubble.image-bubble,
+body.zalo-workspace .v-application .message-bubble.customer-bubble.sticker-bubble,
+body.zalo-workspace .v-application .message-bubble.customer-bubble.contact-card-bubble,
+body.zalo-workspace .v-application .message-bubble.staff-bubble.image-bubble,
+body.zalo-workspace .v-application .message-bubble.staff-bubble.image-bubble-self,
+body.zalo-workspace .v-application .message-bubble.staff-bubble.sticker-bubble,
+body.zalo-workspace .v-application .message-bubble.staff-bubble.contact-card-bubble,
+body.zalo-workspace .v-application .message-bubble.staff-bubble.contact-bubble-self,
+body.zalo-workspace .v-theme--forestTheme .message-bubble.customer-bubble.image-bubble,
+body.zalo-workspace .v-theme--forestTheme .message-bubble.customer-bubble.sticker-bubble,
+body.zalo-workspace .v-theme--forestTheme .message-bubble.customer-bubble.contact-card-bubble,
+body.zalo-workspace .v-theme--forestTheme .message-bubble.staff-bubble.image-bubble,
+body.zalo-workspace .v-theme--forestTheme .message-bubble.staff-bubble.image-bubble-self,
+body.zalo-workspace .v-theme--forestTheme .message-bubble.staff-bubble.sticker-bubble,
+body.zalo-workspace .v-theme--forestTheme .message-bubble.staff-bubble.contact-card-bubble,
+body.zalo-workspace .v-theme--forestTheme .message-bubble.staff-bubble.contact-bubble-self,
+body.zalo-workspace .v-theme--theme-monochrome .message-bubble.customer-bubble.image-bubble,
+body.zalo-workspace .v-theme--theme-monochrome .message-bubble.customer-bubble.sticker-bubble,
+body.zalo-workspace .v-theme--theme-monochrome .message-bubble.customer-bubble.contact-card-bubble,
+body.zalo-workspace .v-theme--theme-monochrome .message-bubble.staff-bubble.image-bubble,
+body.zalo-workspace .v-theme--theme-monochrome .message-bubble.staff-bubble.image-bubble-self,
+body.zalo-workspace .v-theme--theme-monochrome .message-bubble.staff-bubble.sticker-bubble,
+body.zalo-workspace .v-theme--theme-monochrome .message-bubble.staff-bubble.contact-card-bubble,
+body.zalo-workspace .v-theme--theme-monochrome .message-bubble.staff-bubble.contact-bubble-self,
+body.zalo-workspace .v-theme--corporate-navy .message-bubble.customer-bubble.image-bubble,
+body.zalo-workspace .v-theme--corporate-navy .message-bubble.customer-bubble.sticker-bubble,
+body.zalo-workspace .v-theme--corporate-navy .message-bubble.customer-bubble.contact-card-bubble,
+body.zalo-workspace .v-theme--corporate-navy .message-bubble.staff-bubble.image-bubble,
+body.zalo-workspace .v-theme--corporate-navy .message-bubble.staff-bubble.image-bubble-self,
+body.zalo-workspace .v-theme--corporate-navy .message-bubble.staff-bubble.sticker-bubble,
+body.zalo-workspace .v-theme--corporate-navy .message-bubble.staff-bubble.contact-card-bubble,
+body.zalo-workspace .v-theme--corporate-navy .message-bubble.staff-bubble.contact-bubble-self,
+body.zalo-workspace .v-theme--emerald-care .message-bubble.customer-bubble.image-bubble,
+body.zalo-workspace .v-theme--emerald-care .message-bubble.customer-bubble.sticker-bubble,
+body.zalo-workspace .v-theme--emerald-care .message-bubble.customer-bubble.contact-card-bubble,
+body.zalo-workspace .v-theme--emerald-care .message-bubble.staff-bubble.image-bubble,
+body.zalo-workspace .v-theme--emerald-care .message-bubble.staff-bubble.image-bubble-self,
+body.zalo-workspace .v-theme--emerald-care .message-bubble.staff-bubble.sticker-bubble,
+body.zalo-workspace .v-theme--emerald-care .message-bubble.staff-bubble.contact-bubble-self,
+body.zalo-workspace .v-theme--dark-obsidian .message-bubble.customer-bubble.image-bubble,
+body.zalo-workspace .v-theme--dark-obsidian .message-bubble.customer-bubble.sticker-bubble,
+body.zalo-workspace .v-theme--dark-obsidian .message-bubble.customer-bubble.contact-card-bubble,
+body.zalo-workspace .v-theme--dark-obsidian .message-bubble.staff-bubble.image-bubble,
+body.zalo-workspace .v-theme--dark-obsidian .message-bubble.staff-bubble.image-bubble-self,
+body.zalo-workspace .v-theme--dark-obsidian .message-bubble.staff-bubble.sticker-bubble,
+body.zalo-workspace .v-theme--dark-obsidian .message-bubble.staff-bubble.contact-bubble-self,
+body.zalo-workspace .v-theme--dark-charcoal .message-bubble.customer-bubble.image-bubble,
+body.zalo-workspace .v-theme--dark-charcoal .message-bubble.customer-bubble.sticker-bubble,
+body.zalo-workspace .v-theme--dark-charcoal .message-bubble.customer-bubble.contact-card-bubble,
+body.zalo-workspace .v-theme--dark-charcoal .message-bubble.staff-bubble.image-bubble,
+body.zalo-workspace .v-theme--dark-charcoal .message-bubble.staff-bubble.image-bubble-self,
+body.zalo-workspace .v-theme--dark-charcoal .message-bubble.staff-bubble.sticker-bubble,
+body.zalo-workspace .v-theme--dark-charcoal .message-bubble.staff-bubble.contact-bubble-self,
+body.zalo-workspace .v-theme--light .message-bubble.customer-bubble.image-bubble,
+body.zalo-workspace .v-theme--light .message-bubble.customer-bubble.sticker-bubble,
+body.zalo-workspace .v-theme--light .message-bubble.customer-bubble.contact-card-bubble,
+body.zalo-workspace .v-theme--light .message-bubble.staff-bubble.image-bubble,
+body.zalo-workspace .v-theme--light .message-bubble.staff-bubble.image-bubble-self,
+body.zalo-workspace .v-theme--light .message-bubble.staff-bubble.sticker-bubble,
+body.zalo-workspace .v-theme--light .message-bubble.staff-bubble.contact-bubble-self,
+body.zalo-workspace .v-theme--light-apple .message-bubble.customer-bubble.image-bubble,
+body.zalo-workspace .v-theme--light-apple .message-bubble.customer-bubble.sticker-bubble,
+body.zalo-workspace .v-theme--light-apple .message-bubble.customer-bubble.contact-card-bubble,
+body.zalo-workspace .v-theme--light-apple .message-bubble.staff-bubble.image-bubble,
+body.zalo-workspace .v-theme--light-apple .message-bubble.staff-bubble.image-bubble-self,
+body.zalo-workspace .v-theme--light-apple .message-bubble.staff-bubble.sticker-bubble,
+body.zalo-workspace .v-theme--light-apple .message-bubble.staff-bubble.contact-bubble-self {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  min-width: 0 !important;
+  color: rgb(var(--v-theme-on-surface)) !important;
+}
+
+body.zalo-workspace .message-bubble.image-bubble .msg-time,
+body.zalo-workspace .message-bubble.image-bubble .msg-time-self,
+body.zalo-workspace .message-bubble.image-bubble .msg-time-contact,
+body.zalo-workspace .message-bubble.image-bubble-self .msg-time-self,
+body.zalo-workspace .message-bubble.sticker-bubble .msg-time,
+body.zalo-workspace .message-bubble.sticker-bubble .msg-time-self,
+body.zalo-workspace .message-bubble.sticker-bubble .msg-time-contact,
+body.zalo-workspace .message-bubble.contact-card-bubble .msg-time,
+body.zalo-workspace .message-bubble.contact-bubble-self .msg-time-self {
+  color: rgba(var(--v-theme-on-surface), 0.72) !important;
+  opacity: 1 !important;
+}
+
+body.zalo-workspace .v-theme--light .msg-time-contact,
+body.zalo-workspace .v-theme--light-apple .msg-time-contact,
+body.zalo-workspace .v-theme--forestTheme .msg-time-contact,
+body.zalo-workspace .v-theme--theme-monochrome .msg-time-contact,
+body.zalo-workspace .v-theme--corporate-navy .msg-time-contact,
+body.zalo-workspace .v-theme--light .message-bubble.image-bubble .msg-time,
+body.zalo-workspace .v-theme--light-apple .message-bubble.image-bubble .msg-time,
+body.zalo-workspace .v-theme--forestTheme .message-bubble.image-bubble .msg-time,
+body.zalo-workspace .v-theme--theme-monochrome .message-bubble.image-bubble .msg-time,
+body.zalo-workspace .v-theme--corporate-navy .message-bubble.image-bubble .msg-time,
+body.zalo-workspace .v-theme--light .message-bubble.image-bubble .msg-time-self,
+body.zalo-workspace .v-theme--light-apple .message-bubble.image-bubble .msg-time-self,
+body.zalo-workspace .v-theme--forestTheme .message-bubble.image-bubble .msg-time-self,
+body.zalo-workspace .v-theme--theme-monochrome .message-bubble.image-bubble .msg-time-self,
+body.zalo-workspace .v-theme--corporate-navy .message-bubble.image-bubble .msg-time-self,
+body.zalo-workspace .v-theme--light .message-bubble.image-bubble .msg-time-contact,
+body.zalo-workspace .v-theme--light-apple .message-bubble.image-bubble .msg-time-contact,
+body.zalo-workspace .v-theme--forestTheme .message-bubble.image-bubble .msg-time-contact,
+body.zalo-workspace .v-theme--theme-monochrome .message-bubble.image-bubble .msg-time-contact,
+body.zalo-workspace .v-theme--corporate-navy .message-bubble.image-bubble .msg-time-contact,
+body.zalo-workspace .v-theme--light .message-bubble.sticker-bubble .msg-time,
+body.zalo-workspace .v-theme--light-apple .message-bubble.sticker-bubble .msg-time,
+body.zalo-workspace .v-theme--forestTheme .message-bubble.sticker-bubble .msg-time,
+body.zalo-workspace .v-theme--theme-monochrome .message-bubble.sticker-bubble .msg-time,
+body.zalo-workspace .v-theme--corporate-navy .message-bubble.sticker-bubble .msg-time,
+body.zalo-workspace .v-theme--light .message-bubble.contact-card-bubble .msg-time,
+body.zalo-workspace .v-theme--light-apple .message-bubble.contact-card-bubble .msg-time,
+body.zalo-workspace .v-theme--forestTheme .message-bubble.contact-card-bubble .msg-time,
+body.zalo-workspace .v-theme--theme-monochrome .message-bubble.contact-card-bubble .msg-time,
+body.zalo-workspace .v-theme--corporate-navy .message-bubble.contact-card-bubble .msg-time {
+  color: #52525B !important;
+  opacity: 1 !important;
+}
+
+/* Captions inside bubbles for light themes */
+body.zalo-workspace .v-theme--light .chat-image-caption,
+body.zalo-workspace .v-theme--light-apple .chat-image-caption,
+body.zalo-workspace .v-theme--forestTheme .chat-image-caption,
+body.zalo-workspace .v-theme--theme-monochrome .chat-image-caption,
+body.zalo-workspace .v-theme--corporate-navy .chat-image-caption {
+  color: #09090B !important;
+  font-weight: 600 !important;
+}
+
+/* Light mode date divider */
+body.zalo-workspace .v-theme--light .date-divider-chip,
+body.zalo-workspace .v-theme--light-apple .date-divider-chip {
+  background: #FFFFFF !important;
+  border: 1px solid #E4E4E7 !important;
+  color: #3F3F46 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+body.zalo-workspace .v-theme--light .date-divider-line,
+body.zalo-workspace .v-theme--light-apple .date-divider-line {
+  background: #E4E4E7 !important;
+}
+
+/* Chat side panels in light mode */
+body.zalo-workspace .v-theme--light .chat-panel-left,
+body.zalo-workspace .v-theme--light-apple .chat-panel-left,
+body.zalo-workspace .v-theme--light .chat-panel-right,
+body.zalo-workspace .v-theme--light-apple .chat-panel-right {
+  background: rgb(var(--v-theme-surface)) !important;
+  backdrop-filter: none;
+}
+
+/* Chat input area - perfectly synchronized with theme surface */
+body.zalo-workspace .chat-input-area {
+  border-top: 1px solid rgba(var(--v-border-color), var(--v-border-opacity)) !important;
+  background: rgb(var(--v-theme-surface)) !important;
+  backdrop-filter: blur(12px);
+}
+
+body.zalo-workspace .v-theme--light .chat-input-area,
+body.zalo-workspace .v-theme--light-apple .chat-input-area {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+  backdrop-filter: none;
+}
+
+/* Chat messages area background */
+body.zalo-workspace .chat-messages-area {
+  background: rgba(var(--v-theme-background), 0.7) !important;
+}
+
+body.zalo-workspace .v-theme--light .chat-messages-area,
+body.zalo-workspace .v-theme--light-apple .chat-messages-area {
+  background: #F4F4F7 !important;
+}
+
+/* Buttons */
+body.zalo-workspace .v-btn--variant-flat {
+  transition: all 0.3s var(--liquid-ease) !important;
+}
+
+body.zalo-workspace .v-btn--variant-flat:hover {
+  box-shadow: 0 0 16px rgba(var(--v-theme-primary), 0.25);
+  transform: translateY(-1px);
+}
+
+/* Chips */
+body.zalo-workspace .v-chip {
+  border-radius: 12px !important;
+  font-weight: 500;
+}
+
+/* Data table */
+body.zalo-workspace .v-data-table {
+  background: transparent !important;
+}
+
+body.zalo-workspace .v-data-table .v-table__wrapper {
+  background: var(--card-glass);
+  border-radius: 16px;
+  border: 1px solid var(--border-glow);
+}
+
+body.zalo-workspace .v-theme--light .v-data-table .v-table__wrapper,
+body.zalo-workspace .v-theme--light-apple .v-data-table .v-table__wrapper {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Dialog */
+body.zalo-workspace .v-overlay__content > .v-card {
+  backdrop-filter: blur(20px);
+}
+
+/* Tabs */
+body.zalo-workspace .v-tab--selected {
+  color: rgb(var(--v-theme-primary)) !important;
+}
+
+/* Status dot animation */
+body.zalo-workspace .status-dot {
+  box-shadow: 0 0 10px rgba(var(--v-theme-primary), 0.8);
+}
+
+/* Progress linear */
+body.zalo-workspace .v-progress-linear {
+  background: rgba(var(--v-theme-primary), 0.1) !important;
+}
+
+/* Smooth transitions for everything */
+body.zalo-workspace .v-card, body.zalo-workspace .v-list-item, body.zalo-workspace .v-btn, body.zalo-workspace .v-chip, body.zalo-workspace .v-tab {
+  transition: all 0.3s var(--liquid-ease) !important;
+}
+
+/* Chat container borders */
+body.zalo-workspace .chat-container > * {
+  border-color: var(--border-glow);
+}
+
+body.zalo-workspace .v-theme--light .chat-container > *,
+body.zalo-workspace .v-theme--light-apple .chat-container > * {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Conversation list active item */
+body.zalo-workspace .conversation-active {
+  background: rgba(var(--v-theme-primary), 0.1) !important;
+  border: 1px solid rgba(var(--v-theme-primary), 0.3) !important;
+}
+
+/* Conversation list sidebar */
+body.zalo-workspace .conversation-list,
+body.zalo-workspace .conversation-list .v-list {
+  background: transparent !important;
+}
+
+/* Chat header area */
+body.zalo-workspace .chat-header {
+  border-bottom: 1px solid rgba(var(--v-border-color), var(--v-border-opacity)) !important;
+  background: rgb(var(--v-theme-surface)) !important;
+}
+
+/* Light mode & Apple Light text contrast fixes */
+body.zalo-workspace .v-theme--light .text-grey,
+body.zalo-workspace .v-theme--light-apple .text-grey {
+  color: #52525B !important;
+}
+
+body.zalo-workspace .v-theme--light .text-grey-darken-1,
+body.zalo-workspace .v-theme--light-apple .text-grey-darken-1 {
+  color: #3F3F46 !important;
+}
+
+body.zalo-workspace .v-theme--light .text-medium-emphasis,
+body.zalo-workspace .v-theme--light-apple .text-medium-emphasis {
+  color: #52525B !important;
+}
+
+body.zalo-workspace .v-theme--light .v-list-item-subtitle,
+body.zalo-workspace .v-theme--light-apple .v-list-item-subtitle {
+  color: #3F3F46 !important;
+}
+
+/* High-contrast enhancements for Dark Themes (Emerald Care, Obsidian Tech, Charcoal Violet) */
+body.zalo-workspace .v-theme--emerald-care .text-grey,
+body.zalo-workspace .v-theme--dark-obsidian .text-grey,
+body.zalo-workspace .v-theme--dark-charcoal .text-grey {
+  color: #B0B5C0 !important;
+}
+
+body.zalo-workspace .v-theme--emerald-care .text-grey-darken-1,
+body.zalo-workspace .v-theme--dark-obsidian .text-grey-darken-1,
+body.zalo-workspace .v-theme--dark-charcoal .text-grey-darken-1 {
+  color: #9DA3AE !important;
+}
+
+body.zalo-workspace .v-theme--emerald-care .text-medium-emphasis,
+body.zalo-workspace .v-theme--dark-obsidian .text-medium-emphasis,
+body.zalo-workspace .v-theme--dark-charcoal .text-medium-emphasis {
+  color: #D1D5DB !important;
+}
+
+body.zalo-workspace .v-theme--emerald-care .v-list-item-subtitle,
+body.zalo-workspace .v-theme--dark-obsidian .v-list-item-subtitle,
+body.zalo-workspace .v-theme--dark-charcoal .v-list-item-subtitle {
+  color: #9DA3AE !important;
+}
+
+/* Universal text foreground & muted utility classes */
+body.zalo-workspace .text-foreground {
+  color: rgb(var(--v-theme-on-surface)) !important;
+}
+
+body.zalo-workspace .text-muted {
+  color: rgba(var(--v-theme-on-surface), 0.72) !important;
+}
+
+/* Ensure dialog cards have proper bg in light mode */
+body.zalo-workspace .v-theme--light .v-overlay__content > .v-card,
+body.zalo-workspace .v-theme--light-apple .v-overlay__content > .v-card {
+  background: #FFFFFF !important;
+  backdrop-filter: none;
+}
+
+/* Light mode tabs */
+body.zalo-workspace .v-theme--light .v-tab--selected,
+body.zalo-workspace .v-theme--light-apple .v-tab--selected {
+  color: #007AFF !important;
+}
+
+/* Alert styling */
+body.zalo-workspace .v-alert {
+  border-radius: 16px !important;
+}
+
+/* Empty state text */
+body.zalo-workspace .v-theme--light .text-grey-lighten-2,
+body.zalo-workspace .v-theme--light-apple .text-grey-lighten-2 {
+  color: #9CA3AF !important;
+}
+
+body.zalo-workspace .v-theme--emerald-care .text-grey-lighten-2,
+body.zalo-workspace .v-theme--dark-obsidian .text-grey-lighten-2,
+body.zalo-workspace .v-theme--dark-charcoal .text-grey-lighten-2 {
+  color: #CBD5E1 !important;
+}
+
+/* Global image display & natural crisp scaling */
+body.zalo-workspace img, body.zalo-workspace .v-img {
+  image-rendering: auto;
+}
+body.zalo-workspace .chat-image {
+  image-rendering: auto !important;
+}
+
+/* Word break and anti-clipping for responsive cards and bubbles */
+body.zalo-workspace .word-break-all {
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+}
+
+/* Tailwind-compatible spacing & gap helpers (Vuetify 3 lacks .gap-* and half-step spacing utilities) */
+body.zalo-workspace .gap-0\.5 { gap: 2px; }
+body.zalo-workspace .gap-1 { gap: 4px; }
+body.zalo-workspace .gap-1\.5 { gap: 6px; }
+body.zalo-workspace .gap-2 { gap: 8px; }
+body.zalo-workspace .gap-2\.5 { gap: 10px; }
+body.zalo-workspace .gap-3 { gap: 12px; }
+body.zalo-workspace .gap-4 { gap: 16px; }
+body.zalo-workspace .gap-5 { gap: 20px; }
+body.zalo-workspace .gap-6 { gap: 24px; }
+@media (min-width: 600px) {
+  body.zalo-workspace .gap-sm-3 { gap: 12px; }
+  body.zalo-workspace .gap-sm-4 { gap: 16px; }
+}
+body.zalo-workspace .mr-0\.5 { margin-right: 2px; }
+body.zalo-workspace .mr-1\.5 { margin-right: 6px; }
+body.zalo-workspace .mr-2\.5 { margin-right: 10px; }
+body.zalo-workspace .ml-1\.5 { margin-left: 6px; }
+body.zalo-workspace .mt-0\.5 { margin-top: 2px; }
+body.zalo-workspace .mt-1\.5 { margin-top: 6px; }
+body.zalo-workspace .mb-0\.5 { margin-bottom: 2px; }
+body.zalo-workspace .mb-1\.5 { margin-bottom: 6px; }
+body.zalo-workspace .mb-2\.5 { margin-bottom: 10px; }
+body.zalo-workspace .pt-0\.5 { padding-top: 2px; }
+body.zalo-workspace .pt-1\.5 { padding-top: 6px; }
+body.zalo-workspace .pt-2\.5 { padding-top: 10px; }
+body.zalo-workspace .pa-1\.5 { padding: 6px; }
+body.zalo-workspace .px-1\.5 { padding-left: 6px; padding-right: 6px; }
+body.zalo-workspace .px-2\.5 { padding-left: 10px; padding-right: 10px; }
+body.zalo-workspace .py-0\.5 { padding-top: 2px; padding-bottom: 2px; }
+body.zalo-workspace .py-1\.5 { padding-top: 6px; padding-bottom: 6px; }
+
+
+/* Quiet surfaces, precise typography, and a shared rhythm across the CRM. */
+body.zalo-workspace .v-application {
+  --crm-line: rgba(var(--v-theme-on-surface), .10);
+  --crm-muted: rgba(var(--v-theme-on-surface), .63);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: rgb(var(--v-theme-background)) !important;
+}
+body.zalo-workspace .liquid-bg { background: rgb(var(--v-theme-background)) !important; animation: none; }
+body.zalo-workspace .v-application .v-card {
+  background: rgb(var(--v-theme-surface)) !important;
+  border: 1px solid var(--crm-line) !important;
+  border-radius: 16px !important;
+  backdrop-filter: none;
+  box-shadow: 0 3px 16px rgba(15, 35, 26, .025);
+}
+body.zalo-workspace .v-application .v-card-title { font-weight: 600; letter-spacing: -.3px; padding: 20px 22px 12px; }
+body.zalo-workspace .v-application .v-card-text { line-height: 1.65; }
+body.zalo-workspace .v-application .v-btn { text-transform: none; letter-spacing: 0; font-weight: 600; border-radius: 9px; }
+body.zalo-workspace .v-application .v-btn--variant-flat:hover { box-shadow: 0 3px 10px rgba(15, 35, 26, .12); transform: none; }
+body.zalo-workspace .v-application .v-field { border-radius: 9px !important; }
+body.zalo-workspace .v-application .v-field--focused { box-shadow: 0 0 0 3px rgba(var(--v-theme-primary), .09); }
+body.zalo-workspace .v-application .v-field__outline { --v-field-border-opacity: .18; }
+body.zalo-workspace .v-application .v-chip { border-radius: 6px !important; font-weight: 600; }
+body.zalo-workspace .v-application .v-alert { border-radius: 10px !important; }
+body.zalo-workspace .crm-topbar.v-app-bar { background: rgb(var(--v-theme-surface)) !important; backdrop-filter: none; border-bottom: 1px solid var(--crm-line) !important; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important; }
+body.zalo-workspace .crm-topbar .v-toolbar__content { gap: 4px; padding-left: 8px; padding-right: 16px; }
+body.zalo-workspace .crm-topbar .v-btn--icon { width: 38px; height: 38px; border-radius: 8px; }
+body.zalo-workspace .crm-topbar .v-icon { font-size: 21px; }
+
+body.zalo-workspace .custom-app-sidebar.v-navigation-drawer { background: var(--sidebar-bg, #003B2B) !important; backdrop-filter: none; border-right: 1px solid var(--sidebar-border, #00261C) !important; }
+body.zalo-workspace .custom-app-sidebar .menu-group-header { font-size: 10px !important; letter-spacing: 1.2px; padding-top: 8px !important; padding-bottom: 8px !important; font-weight: 700; color: var(--sidebar-group-header, #5C8370) !important; }
+body.zalo-workspace .custom-app-sidebar .v-list-item { border-radius: 9px !important; min-height: 38px; transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important; margin-bottom: 2px; color: var(--sidebar-text, #9EBAAC) !important; }
+body.zalo-workspace .custom-app-sidebar .v-list-item:hover:not(.v-list-item--active) { background: var(--sidebar-hover-bg, rgba(255, 255, 255, 0.12)) !important; color: #FFFFFF !important; transform: translateX(3px); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 2px 6px rgba(0, 0, 0, 0.18) !important; }
+body.zalo-workspace .custom-app-sidebar .v-list-item:hover:not(.v-list-item--active) .v-icon { color: var(--sidebar-hover-icon, #34D399) !important; opacity: 1 !important; }
+body.zalo-workspace .custom-app-sidebar .v-list-item:hover:not(.v-list-item--active) .v-list-item-title { color: #FFFFFF !important; font-weight: 600 !important; }
+body.zalo-workspace .custom-app-sidebar .v-list-item-title { font-size: 12.5px; font-weight: 500; letter-spacing: -0.1px; color: var(--sidebar-text, #9EBAAC); transition: color 0.18s ease; }
+body.zalo-workspace .custom-app-sidebar .v-list-item__prepend .v-icon { font-size: 19px; color: var(--sidebar-icon, #7CA291); opacity: .85; transition: all 0.18s ease; }
+body.zalo-workspace .custom-app-sidebar .v-list-item--active { background: var(--sidebar-active-bg, #126B49) !important; color: #FFFFFF !important; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) !important; font-weight: 600 !important; }
+body.zalo-workspace .custom-app-sidebar .v-list-item--active .v-list-item-title { font-weight: 700; color: #FFFFFF !important; }
+body.zalo-workspace .custom-app-sidebar .v-list-item--active .v-icon { opacity: 1; color: #FFFFFF !important; }
+
+/* Category jewel accents */
+body.zalo-workspace .category-nav-item .v-list-item__prepend .v-icon { opacity: 0.9 !important; }
+body.zalo-workspace .category-nav-item:hover { transform: translateX(2px); }
+body.zalo-workspace .category-nav-item.v-list-item--active { background: rgba(var(--v-theme-primary), .12) !important; border-left: 3px solid currentColor; }
+
+/* System collapsible section inside sidebar */
+body.zalo-workspace .system-user-box {
+  background: rgba(var(--v-theme-on-surface), 0.025);
+  border: 1px solid var(--crm-line);
+  transition: all 0.2s ease;
+}
+body.zalo-workspace .system-user-box:hover {
+  background: rgba(var(--v-theme-on-surface), 0.04);
+  border-color: rgba(var(--v-theme-primary), 0.2);
+}
+body.zalo-workspace .user-avatar-badge {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(var(--v-theme-primary), 0.12);
+  color: rgb(var(--v-theme-primary));
+  font-weight: 700;
+  font-size: 13px;
+  border: 1px solid rgba(var(--v-theme-primary), 0.18);
+  flex-shrink: 0;
+}
+body.zalo-workspace .user-online-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 5px #10B981;
+  display: inline-block;
+  flex-shrink: 0;
+}
+body.zalo-workspace .system-quick-dock {
+  background: var(--sidebar-dock-bg, rgba(255, 255, 255, 0.04));
+  border: 1px solid var(--sidebar-dock-border, rgba(255, 255, 255, 0.08));
+  border-radius: 10px;
+  gap: 2px;
+}
+body.zalo-workspace .system-quick-dock .v-btn--icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 7px;
+  color: var(--sidebar-dock-icon, #9EBAAC);
+  transition: all 0.18s ease;
+}
+body.zalo-workspace .system-quick-dock .v-btn--icon:hover {
+  background: var(--sidebar-dock-hover-bg, rgba(255, 255, 255, 0.12));
+  color: var(--sidebar-dock-hover, #34D399);
+}
+body.zalo-workspace .dock-btn-wrap {
+  display: flex;
+  align-items: center;
+}
+body.zalo-workspace .dock-btn-wrap .v-btn--icon {
+  width: 32px !important;
+  height: 32px !important;
+}
+body.zalo-workspace .crm-content { padding: 28px 32px 40px !important; }
+body.zalo-workspace .crm-content > div > h1.text-h4 { font-size: 25px !important; font-weight: 700; letter-spacing: -.8px !important; margin-bottom: 24px !important; }
+body.zalo-workspace .crm-content > div > h1 > .v-icon { font-size: 25px; }
+body.zalo-workspace .crm-content--chat { padding: 0 !important; height: calc(100dvh - var(--v-layout-top, 64px)); overflow: hidden; }
+body.zalo-workspace .crm-content--chat .chat-panel-left, body.zalo-workspace .crm-content--chat .chat-panel-right { background: rgb(var(--v-theme-surface)) !important; backdrop-filter: none; }
+body.zalo-workspace .v-application .chat-messages-area { background: rgb(var(--v-theme-background)) !important; }
+body.zalo-workspace .v-application .message-bubble.staff-bubble { background: rgb(var(--v-theme-primary)) !important; color: rgb(var(--v-theme-on-primary)) !important; box-shadow: none !important; border: none !important; }
+body.zalo-workspace .v-application .message-bubble.customer-bubble { background: rgb(var(--v-theme-surface)) !important; border-color: var(--crm-line) !important; box-shadow: 0 2px 6px rgba(15,35,26,.03) !important; }
+body.zalo-workspace .v-application .msg-time-self { color: rgb(var(--v-theme-on-primary)) !important; opacity: .75; }
+body.zalo-workspace .v-application .message-bubble.image-bubble,
+body.zalo-workspace .v-application .message-bubble.image-bubble-self,
+body.zalo-workspace .v-application .message-bubble.sticker-bubble,
+body.zalo-workspace .v-application .message-bubble.contact-card-bubble,
+body.zalo-workspace .v-application .message-bubble.contact-bubble-self,
+body.zalo-workspace .v-application .message-bubble.customer-bubble.image-bubble,
+body.zalo-workspace .v-application .message-bubble.customer-bubble.sticker-bubble,
+body.zalo-workspace .v-application .message-bubble.customer-bubble.contact-card-bubble,
+body.zalo-workspace .v-application .message-bubble.staff-bubble.image-bubble,
+body.zalo-workspace .v-application .message-bubble.staff-bubble.image-bubble-self,
+body.zalo-workspace .v-application .message-bubble.staff-bubble.sticker-bubble,
+body.zalo-workspace .v-application .message-bubble.staff-bubble.contact-card-bubble,
+body.zalo-workspace .v-application .message-bubble.staff-bubble.contact-bubble-self {
+  background: transparent !important;
+  color: rgb(var(--v-theme-on-surface)) !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  min-width: 0 !important;
+}
+body.zalo-workspace .v-application .message-bubble.image-bubble .msg-time,
+body.zalo-workspace .v-application .message-bubble.image-bubble .msg-time-self,
+body.zalo-workspace .v-application .message-bubble.image-bubble .msg-time-contact,
+body.zalo-workspace .v-application .message-bubble.image-bubble-self .msg-time-self,
+body.zalo-workspace .v-application .message-bubble.sticker-bubble .msg-time,
+body.zalo-workspace .v-application .message-bubble.sticker-bubble .msg-time-self,
+body.zalo-workspace .v-application .message-bubble.sticker-bubble .msg-time-contact,
+body.zalo-workspace .v-application .message-bubble.contact-card-bubble .msg-time,
+body.zalo-workspace .v-application .message-bubble.contact-bubble-self .msg-time-self {
+  color: rgba(var(--v-theme-on-surface), .72) !important;
+  opacity: 1 !important;
+}
+body.zalo-workspace .v-theme--light.v-application .message-bubble.image-bubble .msg-time,
+body.zalo-workspace .v-theme--light-apple.v-application .message-bubble.image-bubble .msg-time,
+body.zalo-workspace .v-theme--light .v-application .message-bubble.image-bubble .msg-time,
+body.zalo-workspace .v-theme--light-apple .v-application .message-bubble.image-bubble .msg-time,
+body.zalo-workspace .v-theme--light.v-application .message-bubble.sticker-bubble .msg-time,
+body.zalo-workspace .v-theme--light-apple.v-application .message-bubble.sticker-bubble .msg-time,
+body.zalo-workspace .v-theme--light .v-application .message-bubble.sticker-bubble .msg-time,
+body.zalo-workspace .v-theme--light-apple .v-application .message-bubble.sticker-bubble .msg-time {
+  color: #52525B !important;
+  opacity: 1 !important;
+}
+body.zalo-workspace .v-application .conversation-active { background: rgba(var(--v-theme-primary), .07) !important; border-color: rgba(var(--v-theme-primary), .16) !important; }
+body.zalo-workspace .v-application .v-data-table .v-table__wrapper { border-radius: 12px; border-color: var(--crm-line); background: rgb(var(--v-theme-surface)); }
+body.zalo-workspace .v-application .v-table th { background: rgba(var(--v-theme-on-surface), .025); font-size: 11px; font-weight: 700 !important; color: var(--crm-muted); white-space: nowrap; }
+body.zalo-workspace .v-application .v-table td { font-size: 13px; border-color: var(--crm-line) !important; }
+body.zalo-workspace .v-application .v-table tbody tr:hover { background: rgba(var(--v-theme-primary), .025); }
+body.zalo-workspace .v-application .v-tab { text-transform: none; letter-spacing: 0; font-size: 13px; }
+body.zalo-workspace .v-theme--light-apple .v-tab--selected { color: rgb(var(--v-theme-primary)) !important; }
+body.zalo-workspace .v-application .v-overlay__content > .v-card { backdrop-filter: none; }
+body.zalo-workspace .v-overlay__content,
+body.zalo-workspace .v-application .v-overlay__content { max-width: calc(100vw - 16px) !important; }
+body.zalo-workspace .v-data-table .v-table__wrapper,
+body.zalo-workspace .v-table > .v-table__wrapper { -webkit-overflow-scrolling: touch; }
+body.zalo-workspace .v-application img, body.zalo-workspace .v-application .v-img { image-rendering: auto; }
+body.zalo-workspace .v-application :is(button, a, [role='button']):focus-visible { outline: 2px solid rgb(var(--v-theme-primary)); outline-offset: 3px; }
+body.zalo-workspace .dashboard-heading { display: flex; align-items: end; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin: 4px 0 26px; }
+body.zalo-workspace .eyebrow { text-transform: uppercase; font-size: 10px; font-weight: 700; letter-spacing: 1.8px; color: var(--crm-muted); margin-bottom: 8px; }
+body.zalo-workspace .dashboard-heading h1 { font-size: 30px; line-height: 1.25; letter-spacing: -1.1px; font-weight: 700; }
+body.zalo-workspace .dashboard-heading p { font-size: 12px; color: var(--crm-muted); margin-top: 9px; }
+body.zalo-workspace .dashboard-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+body.zalo-workspace .dashboard-section-title { font-size: 11px; text-transform: uppercase; letter-spacing: 1.3px; font-weight: 600; color: var(--crm-muted); margin: 24px 0 14px; }
+body.zalo-workspace .kpi-card .v-card-text { padding: 19px !important; text-align: left !important; }
+body.zalo-workspace .kpi-icon { width: 32px; height: 32px; display: grid; place-items: center; background: rgba(var(--v-theme-primary), .06); border-radius: 9px; margin-bottom: 18px; }
+body.zalo-workspace .kpi-value { font-size: 28px; font-weight: 700; letter-spacing: -1px; line-height: 1.15; font-variant-numeric: tabular-nums; }
+body.zalo-workspace .kpi-label { font-size: 11px; color: var(--crm-muted); margin-top: 8px; }
+body.zalo-workspace .order-summary .v-card-text { display: flex; align-items: center; gap: 16px; padding: 20px 24px !important; text-align: left !important; }
+body.zalo-workspace .order-summary .v-icon { background: rgba(var(--v-theme-primary), .06); padding: 24px; border-radius: 12px; }
+body.zalo-workspace .order-summary .text-h5, body.zalo-workspace .order-summary .text-h6 { letter-spacing: -.6px !important; }
+body.zalo-workspace .dashboard-page .v-row { --v-row-gap: 16px; }
+body.zalo-workspace .auth-shell { background: rgb(var(--v-theme-background)) !important; }
+body.zalo-workspace .auth-grid { min-height: 100dvh; display: grid; grid-template-columns: 1.05fr 1fr; }
+body.zalo-workspace .auth-story { background: #173E32; color: #F3F5ED; display: flex; flex-direction: column; justify-content: space-between; padding: 56px clamp(32px, 6vw, 100px); position: relative; overflow: hidden; }
+body.zalo-workspace .auth-story::after { content: ''; position: absolute; width: 580px; height: 580px; border: 1px solid #ffffff10; border-radius: 50%; right: -320px; bottom: -220px; box-shadow: 0 0 0 70px #ffffff03, 0 0 0 140px #ffffff03; pointer-events: none; }
+body.zalo-workspace .auth-wordmark { font-size: 23px; font-weight: 700; letter-spacing: -1px; }
+body.zalo-workspace .auth-wordmark span { color: #B9CDA5; }
+body.zalo-workspace .auth-story-content { position: relative; z-index: 1; padding: 64px 0; max-width: 460px; }
+body.zalo-workspace .auth-story .eyebrow { color: #B9CDA5; margin-bottom: 24px; }
+body.zalo-workspace .auth-story h2 { font-size: clamp(32px, 3.3vw, 50px); font-weight: 500; line-height: 1.3; letter-spacing: -1.6px; margin-bottom: 24px; }
+body.zalo-workspace .auth-story p { font-size: 14px; line-height: 1.9; color: #CBD6CD; max-width: 360px; }
+body.zalo-workspace .auth-benefits { display: flex; flex-direction: column; gap: 16px; margin-top: 36px; font-size: 12px; color: #DEE7DF; }
+body.zalo-workspace .auth-benefits .v-icon { color: #B9CDA5; margin-right: 12px; }
+body.zalo-workspace .auth-footer { font-size: 10px; letter-spacing: 1px; color: #B2C2B7; }
+body.zalo-workspace .auth-form-pane { display: flex; align-items: center; justify-content: center; padding: 40px 24px; }
+body.zalo-workspace .auth-form-wrap { width: 100%; max-width: 430px; }
+body.zalo-workspace .auth-form-pane .v-card { border: 0 !important; background: transparent !important; box-shadow: none; }
+body.zalo-workspace .login-heading { margin-bottom: 28px; }
+body.zalo-workspace .login-heading h2 { font-size: 22px; letter-spacing: -.6px; font-weight: 700; }
+body.zalo-workspace .login-heading p { font-size: 12px; margin-top: 8px; color: var(--crm-muted); }
+body.zalo-workspace .login-card .v-field { background: rgb(var(--v-theme-surface)) !important; }
+body.zalo-workspace .login-card .v-field__input { color: rgb(var(--v-theme-on-surface)) !important; }
+@media (max-width: 1279px) { body.zalo-workspace .crm-content { padding: 24px !important; } body.zalo-workspace .crm-content--chat { padding: 0 !important; } body.zalo-workspace .crm-topbar .crm-user-status { display: none !important; } }
+@media (max-width: 959px) { body.zalo-workspace .auth-grid { grid-template-columns: 1fr; } body.zalo-workspace .auth-story { display: none; } body.zalo-workspace .auth-form-pane { min-height: 100dvh; } body.zalo-workspace .crm-content { padding: 20px 16px !important; } body.zalo-workspace .crm-content--chat { padding: 0 !important; } body.zalo-workspace .dashboard-heading h1 { font-size: 26px; } body.zalo-workspace .kpi-card .v-card-text { padding: 16px !important; } }
+@media (prefers-reduced-motion: reduce) { body.zalo-workspace *, body.zalo-workspace *::before, body.zalo-workspace *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+
+body.zalo-workspace .crm-shell .v-main { background: rgb(var(--v-theme-background)); }
+body.zalo-workspace .crm-topbar .v-field { box-shadow: none; border: 1px solid var(--crm-line); }
+@media (max-width: 599px) {
+  body.zalo-workspace .crm-content { padding: 12px 10px 24px !important; }
+  body.zalo-workspace .crm-content--chat { padding: 0 !important; }
+  body.zalo-workspace .dashboard-heading { margin: 2px 0 18px; gap: 12px; }
+  body.zalo-workspace .dashboard-heading h1 { font-size: 21px; letter-spacing: -0.6px; }
+  body.zalo-workspace .v-application .v-card-title { padding: 14px 16px 10px; font-size: 16px; }
+  body.zalo-workspace .order-summary .v-card-text { padding: 14px 16px !important; gap: 12px; }
+  body.zalo-workspace .kpi-value { font-size: 22px; }
+  body.zalo-workspace .crm-topbar .v-toolbar__content { padding-inline: 4px 6px; gap: 2px; }
+  body.zalo-workspace .crm-topbar .v-btn--icon { width: 34px; height: 34px; flex-shrink: 0; margin-inline: 0 !important; }
+  body.zalo-workspace .crm-topbar .crm-attendance { gap: 4px !important; margin-right: 4px !important; }
+  body.zalo-workspace .crm-topbar .crm-attendance .v-chip { padding-inline: 8px; }
+  body.zalo-workspace .crm-topbar .crm-attendance .v-chip__content { font-size: 0; }
+  body.zalo-workspace .crm-topbar .crm-attendance .v-chip__prepend { margin-inline: 0; }
+  body.zalo-workspace .crm-topbar .crm-attendance .v-btn { min-width: 28px; padding-inline: 6px !important; }
+  body.zalo-workspace .crm-topbar .crm-attendance .v-btn .v-btn__prepend { margin-inline: 0; }
+}
+@media (max-width: 359px) { body.zalo-workspace .crm-topbar .v-btn--icon { width: 30px; } }
+/* Account connections and collapsible system navigation. */
+body.zalo-workspace .connected-accounts { margin: 0 12px 14px; padding: 0 0 14px; border-bottom: 1px solid var(--crm-line); }
+body.zalo-workspace .connections-heading { display: flex; align-items: center; justify-content: space-between; min-height: 36px; gap: 6px; margin: 0 2px 8px; }
+body.zalo-workspace .connections-heading .menu-group-header { font-size: 9px !important; letter-spacing: .8px; font-weight: 700; }
+body.zalo-workspace .connection-total { display: inline-block; margin-left: 3px; font-size: 10px; letter-spacing: 0; opacity: .7; }
+body.zalo-workspace .connections-heading .v-btn { border-radius: 7px; }
+body.zalo-workspace .account-list { max-height: 176px; overflow-y: auto; background: transparent; }
+body.zalo-workspace .custom-app-sidebar .connected-account { min-height: 52px; margin: 2px 0; padding-inline: 8px; color: #9EBAAC !important; border-radius: 8px; transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important; }
+body.zalo-workspace .custom-app-sidebar .connected-account:hover:not(.v-list-item--active) { background: rgba(255, 255, 255, 0.12) !important; color: #FFFFFF !important; transform: translateX(3px); box-shadow: inset 0 0 0 1px rgba(110, 231, 183, 0.22) !important; }
+body.zalo-workspace .custom-app-sidebar .connected-account:hover:not(.v-list-item--active) .v-list-item-title { color: #FFFFFF !important; }
+body.zalo-workspace .custom-app-sidebar .connected-account.v-list-item--active { background: var(--sidebar-active-bg, #126B49) !important; color: #FFFFFF !important; }
+body.zalo-workspace .custom-app-sidebar .connected-account .v-list-item-title { font-size: 12px; font-weight: 600; color: inherit; }
+body.zalo-workspace .custom-app-sidebar .connected-account .v-list-item-subtitle { font-size: 10px; margin-top: 4px; color: #7CA291; }
+body.zalo-workspace .account-avatar { position: relative; display: grid; place-items: center; flex-shrink: 0; width: 32px; height: 32px; margin-right: 12px; border-radius: 10px; background: rgba(var(--v-theme-primary), .08); color: rgb(var(--v-theme-primary)); border: 1px solid rgba(var(--v-theme-primary), .10); font-weight: 700; font-size: 12px; }
+body.zalo-workspace .account-status { width: 9px; height: 9px; border: 2px solid rgb(var(--v-theme-surface)); border-radius: 50%; background: rgb(var(--v-theme-error)); position: absolute; right: -2px; bottom: -2px; }
+body.zalo-workspace .account-status--online { background: rgb(var(--v-theme-success)); }
+body.zalo-workspace .accounts-empty { font-size: 11px; line-height: 1.8; color: var(--crm-muted); padding: 4px 8px 10px; }
+body.zalo-workspace .custom-app-sidebar .connections-manage { min-height: 34px; padding-inline: 8px; margin-top: 6px; color: var(--crm-muted); }
+body.zalo-workspace .custom-app-sidebar .connections-manage .v-list-item-title { font-size: 11px; }
+body.zalo-workspace .custom-app-sidebar .connections-manage .v-icon { font-size: 18px; }
+body.zalo-workspace .system-group-toggle { width: 100%; display: flex; align-items: center; justify-content: space-between; border: 0; padding: 10px 12px; background: transparent; color: #5C8370; font: inherit; font-weight: 700; text-align: left; cursor: pointer; border-radius: 8px; transition: all 0.18s ease; }
+body.zalo-workspace .system-group-toggle:hover { background: rgba(255, 255, 255, 0.10) !important; color: #FFFFFF !important; }
+body.zalo-workspace .nav-count { display: grid; place-items: center; min-width: 23px; height: 21px; padding: 0 6px; border-radius: 6px; background: rgba(var(--v-theme-primary), .09); color: rgb(var(--v-theme-primary)); font-size: 10px; font-weight: 700; font-variant-numeric: tabular-nums; }
+body.zalo-workspace .nav-count--warning { background: rgba(var(--v-theme-warning), .12); color: rgb(var(--v-theme-on-surface)); }
+body.zalo-workspace .theme-preview { display: inline-block; width: 16px; height: 16px; border-radius: 50%; border: 2px solid rgb(var(--v-theme-surface)); box-shadow: 0 0 0 1px var(--crm-line); flex-shrink: 0; }
+body.zalo-workspace .sidebar-shortcut { color: var(--crm-muted); border: 1px solid var(--crm-line); padding: 1px 4px; border-radius: 4px; font-size: 9px; }
+body.zalo-workspace .v-navigation-drawer--rail .connected-accounts { margin-inline: 8px; }
+body.zalo-workspace .connections-heading--rail { justify-content: center; }
+body.zalo-workspace .v-navigation-drawer--rail .connected-account { padding-inline: 10px; }
+body.zalo-workspace .v-navigation-drawer--rail .account-avatar { margin-right: 0; }
+body.zalo-workspace .v-navigation-drawer--rail .system-group-toggle { padding-inline: 8px; }
+body.zalo-workspace .conversation-search-header { padding: 14px 12px 0; flex-shrink: 0; border-bottom: 1px solid var(--crm-line); }
+body.zalo-workspace .conversation-search-header .v-field { font-size: 12px; background: rgba(var(--v-theme-on-surface), .02); }
+body.zalo-workspace .conversation-filter-tabs { margin: 10px -6px 0; }
+body.zalo-workspace .conversation-filter-tabs .v-tab { min-width: 0 !important; padding-inline: 7px !important; font-size: 11px !important; }
+
+body.zalo-workspace .conversation-account-toolbar { display: flex; align-items: center; gap: 6px; padding: 12px 10px 0; flex-shrink: 0; }
+body.zalo-workspace .conversation-account-name.v-btn { flex: 1 1 0; min-width: 0; justify-content: flex-start; padding-inline: 6px; font-size: 12px; height: 34px; }
+body.zalo-workspace .conversation-account-name .v-btn__content { width: 100%; min-width: 0; justify-content: flex-start; }
+body.zalo-workspace .conversation-account-actions { display: flex; align-items: center; gap: 2px; flex-shrink: 0; }
+body.zalo-workspace .conversation-account-actions .v-btn { width: 32px; height: 32px; }
+body.zalo-workspace .conversation-account-actions .v-icon { font-size: 19px; }
+body.zalo-workspace .conversation-account-toolbar + .conversation-search-header { padding-top: 10px; }
